@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarruSense Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1 class="titulo">FarruSense - Monitoreo Ambiental</h1>
+
+    <!-- Panel tiempo real -->
+    <div class="panel" id="panelRealtime">
+        <div class="datos">
+            <div class="dato" id="btnTemp" onclick="mostrarGrafica('temp')">
+                <h3>Temperatura</h3>    
+                <p id="temp">-- °C</p>
+            </div>
+            <div class="dato" id="btnHum" onclick="mostrarGrafica('hum')">
+                <h3>Humedad</h3>
+                <p id="hum">-- %</p>
+            </div>
+            <div class="dato" id="btnAir" onclick="mostrarGrafica('air')">
+                <h3>Calidad del aire</h3>
+                <p id="air">-- ppm</p>
+            </div>
+            <div class="dato" id="btnAll" onclick="mostrarGrafica('all')">
+                <h3>Mostrar todas</h3>
+                <p></p>
+            </div>
+        </div>
+
+        <div class="grafica">
+            <canvas id="chart"></canvas>
+        </div>
+    </div>
+
+        <!-- Menú hamburguesa -->
+    <div class="menu-hamburguesa">
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="#" onclick="mostrarPanel('realtime')">Monitoreo en tiempo real</a>
+            <a href="#" onclick="mostrarPanel('historicos')">Mostrar datos históricos</a>
+        </div>
+    </div>
+
+
+    <!-- Panel histórico -->
+<div class="panel oculto" id="panelHistoricos">
+    <h2>Datos Históricos</h2>
+
+    <!-- Botones tipo tarjetas -->
+    <div class="datos">
+        <div class="dato" id="btnGraficaHistorico">
+            <h3>Gráfica</h3>
+        </div>
+        <div class="dato" id="btnDatosHistorico">
+            <h3>Datos</h3>
+        </div>
+    </div>
+
+    <!--  Gráfica -->
+    <div class="grafica" id="contenedorGraficaHistorico">
+        <canvas id="chartHistorico"></canvas>
+    </div>
+
+    <!-- Tabla de datos -->
+    <div id="tablaDatos" class="oculto">
+        <table id="tablaHistorial">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Temperatura (°C)</th>
+                    <th>Humedad (%)</th>
+                    <th>Calidad del aire (ppm)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Se rellena dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
